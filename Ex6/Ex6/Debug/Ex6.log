@@ -1,0 +1,10 @@
+﻿Build started 2015/5/30 9:55:39.
+     1>Project "F:\Medium\OpenGL\实验六\Ex6\Ex6\Ex6.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\Medium\OpenGL\实验六\Ex6\Debug\Ex6.exe" /INCREMENTAL /NOLOGO /LIBPATH:"F:\Medium\OpenGL\实验六\Ex6\Ex6\/glut" glut32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\Medium\OpenGL\实验六\Ex6\Debug\Ex6.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\Medium\OpenGL\实验六\Ex6\Debug\Ex6.lib" /MACHINE:X86 Debug\main.obj
+         Ex6.vcxproj -> F:\Medium\OpenGL\实验六\Ex6\Debug\Ex6.exe
+     1>Done Building Project "F:\Medium\OpenGL\实验六\Ex6\Ex6\Ex6.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.39
