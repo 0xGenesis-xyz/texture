@@ -23,6 +23,49 @@ int wWidth = 0;
 GLuint texture[3];
 GLubyte checkImage[checkImageHeight][checkImageWidth][4];
 
+void DrawCube()
+{
+	glBegin(GL_QUADS);  //启用四边形带绘制模式绘制
+
+    // 绘制前面，这里开始确定纹理坐标，然后是确定点的位置
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f,  1.0f);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f( 1.0f, -1.0f,  1.0f);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f( 1.0f,  1.0f,  1.0f);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f,  1.0f,  1.0f);
+
+    // 绘制后面
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(-1.0f,  1.0f, -1.0f);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f( 1.0f,  1.0f, -1.0f);
+    glTexCoord2f(0.0f, 0.0f); glVertex3f( 1.0f, -1.0f, -1.0f);
+
+    // 上面
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f,  1.0f, -1.0f);
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f,  1.0f,  1.0f);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f( 1.0f,  1.0f,  1.0f);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f( 1.0f,  1.0f, -1.0f);
+
+    //底面
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f( 1.0f, -1.0f, -1.0f);
+    glTexCoord2f(0.0f, 0.0f); glVertex3f( 1.0f, -1.0f,  1.0f);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(-1.0f, -1.0f,  1.0f);
+    
+    // 右面
+    glTexCoord2f(1.0f, 0.0f); glVertex3f( 1.0f, -1.0f, -1.0f);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f( 1.0f,  1.0f, -1.0f);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f( 1.0f,  1.0f,  1.0f);
+    glTexCoord2f(0.0f, 0.0f); glVertex3f( 1.0f, -1.0f,  1.0f);
+
+    // 左面
+    glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
+    glTexCoord2f(1.0f, 0.0f); glVertex3f(-1.0f, -1.0f,  1.0f);
+    glTexCoord2f(1.0f, 1.0f); glVertex3f(-1.0f,  1.0f,  1.0f);
+    glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f,  1.0f, -1.0f);
+
+    glEnd();
+}
+
 void Draw_Leg();
 
 void Draw_Triangle() // This function draws a triangle with RGB colors
@@ -42,7 +85,8 @@ void Draw_Triangle() // This function draws a triangle with RGB colors
 	glPushMatrix();
 	glTranslatef(0, 0, 3.5);
 	glScalef(5, 4, 1);
-	glutSolidCube(1.0);
+//	glutSolidCube(1.0);
+	DrawCube();
 	glPopMatrix();
 
 	glPushMatrix();
@@ -66,7 +110,7 @@ void Draw_Triangle() // This function draws a triangle with RGB colors
 	glPopMatrix();
 
 	glDisable(GL_TEXTURE_2D);
-
+/*
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, texture[2]);  //选择纹理texture[0]
 
@@ -82,12 +126,14 @@ void Draw_Triangle() // This function draws a triangle with RGB colors
 	glPopMatrix();
 
 	glDisable(GL_TEXTURE_2D);	//关闭纹理texture[0]
+*/
 }
 
 void Draw_Leg()
 {
 	glScalef(1, 1, 3);
-	glutSolidCube(1.0);
+//	glutSolidCube(1.0);
+	DrawCube();
 }
 
 #define BITMAP_ID 0x4D42
@@ -204,7 +250,7 @@ void init()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
+	glTexImage2D(GL_TEXTURE, 0, GL_RGBA, checkImageWidth, checkImageHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, checkImage);
 }
 
 void updateView(int width, int height)
@@ -289,10 +335,8 @@ void key(unsigned char k, int x, int y)
 		break;
 	}
 	}
-
 	updateView(wHeight, wWidth);
 }
-
 
 void redraw()
 {
