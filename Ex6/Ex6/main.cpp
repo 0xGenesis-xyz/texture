@@ -28,50 +28,61 @@ void DrawCube()
 	glBegin(GL_QUADS);  //启用四边形带绘制模式绘制
 
     // 绘制前面，这里开始确定纹理坐标，然后是确定点的位置
-    glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f,  1.0f);
-    glTexCoord2f(1.0f, 0.0f); glVertex3f( 1.0f, -1.0f,  1.0f);
-    glTexCoord2f(1.0f, 1.0f); glVertex3f( 1.0f,  1.0f,  1.0f);
-    glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f,  1.0f,  1.0f);
+    glTexCoord2i(0, 0); glVertex3f(-0.5f, -0.5f,  0.5f);
+    glTexCoord2i(1, 0); glVertex3f( 0.5f, -0.5f,  0.5f);
+    glTexCoord2i(1, 1); glVertex3f( 0.5f,  0.5f,  0.5f);
+    glTexCoord2i(0, 1); glVertex3f(-0.5f,  0.5f,  0.5f);
 
     // 绘制后面
-    glTexCoord2f(1.0f, 0.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
-    glTexCoord2f(1.0f, 1.0f); glVertex3f(-1.0f,  1.0f, -1.0f);
-    glTexCoord2f(0.0f, 1.0f); glVertex3f( 1.0f,  1.0f, -1.0f);
-    glTexCoord2f(0.0f, 0.0f); glVertex3f( 1.0f, -1.0f, -1.0f);
+    glTexCoord2i(1, 0); glVertex3f(-0.5f, -0.5f, -0.5f);
+    glTexCoord2i(1, 1); glVertex3f(-0.5f,  0.5f, -0.5f);
+    glTexCoord2i(0, 1); glVertex3f( 0.5f,  0.5f, -0.5f);
+    glTexCoord2i(0, 0); glVertex3f( 0.5f, -0.5f, -0.5f);
 
     // 上面
-    glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f,  1.0f, -1.0f);
-    glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f,  1.0f,  1.0f);
-    glTexCoord2f(1.0f, 0.0f); glVertex3f( 1.0f,  1.0f,  1.0f);
-    glTexCoord2f(1.0f, 1.0f); glVertex3f( 1.0f,  1.0f, -1.0f);
+    glTexCoord2i(0, 1); glVertex3f(-0.5f,  0.5f, -0.5f);
+    glTexCoord2i(0, 0); glVertex3f(-0.5f,  0.5f,  0.5f);
+    glTexCoord2i(1, 0); glVertex3f( 0.5f,  0.5f,  0.5f);
+    glTexCoord2i(1, 1); glVertex3f( 0.5f,  0.5f, -0.5f);
 
     //底面
-    glTexCoord2f(1.0f, 1.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
-    glTexCoord2f(0.0f, 1.0f); glVertex3f( 1.0f, -1.0f, -1.0f);
-    glTexCoord2f(0.0f, 0.0f); glVertex3f( 1.0f, -1.0f,  1.0f);
-    glTexCoord2f(1.0f, 0.0f); glVertex3f(-1.0f, -1.0f,  1.0f);
+    glTexCoord2i(1, 1); glVertex3f(-0.5f, -0.5f, -0.5f);
+    glTexCoord2i(0, 1); glVertex3f( 0.5f, -0.5f, -0.5f);
+    glTexCoord2i(0, 0); glVertex3f( 0.5f, -0.5f,  0.5f);
+    glTexCoord2i(1, 0); glVertex3f(-0.5f, -0.5f,  0.5f);
     
     // 右面
-    glTexCoord2f(1.0f, 0.0f); glVertex3f( 1.0f, -1.0f, -1.0f);
-    glTexCoord2f(1.0f, 1.0f); glVertex3f( 1.0f,  1.0f, -1.0f);
-    glTexCoord2f(0.0f, 1.0f); glVertex3f( 1.0f,  1.0f,  1.0f);
-    glTexCoord2f(0.0f, 0.0f); glVertex3f( 1.0f, -1.0f,  1.0f);
+    glTexCoord2i(1, 0); glVertex3f( 0.5f, -0.5f, -0.5f);
+    glTexCoord2i(1, 1); glVertex3f( 0.5f,  0.5f, -0.5f);
+    glTexCoord2i(0, 1); glVertex3f( 0.5f,  0.5f,  0.5f);
+    glTexCoord2i(0, 0); glVertex3f( 0.5f, -0.5f,  0.5f);
 
     // 左面
-    glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
-    glTexCoord2f(1.0f, 0.0f); glVertex3f(-1.0f, -1.0f,  1.0f);
-    glTexCoord2f(1.0f, 1.0f); glVertex3f(-1.0f,  1.0f,  1.0f);
-    glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f,  1.0f, -1.0f);
+    glTexCoord2i(0, 0); glVertex3f(-0.5f, -0.5f, -0.5f);
+    glTexCoord2i(1, 0); glVertex3f(-0.5f, -0.5f,  0.5f);
+    glTexCoord2i(1, 1); glVertex3f(-0.5f,  0.5f,  0.5f);
+    glTexCoord2i(0, 1); glVertex3f(-0.5f,  0.5f, -0.5f);
 
     glEnd();
 }
 
 void Draw_Leg();
 
+void single()
+{
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture[1]);
+}
+
+void multi()
+{
+	
+}
+
 void Draw_Triangle() // This function draws a triangle with RGB colors
 {
 	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, texture[0]);  //选择纹理texture[0]
+	glBindTexture(GL_TEXTURE_2D, texture[2]);  //选择纹理texture[0]
 	glPushMatrix();
 	glTranslatef(0, 0, 4 + 1);
 	glRotatef(90, 1, 0, 0);
@@ -79,8 +90,7 @@ void Draw_Triangle() // This function draws a triangle with RGB colors
 	glPopMatrix();
 	glDisable(GL_TEXTURE_2D);
 
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, texture[1]);
+	single();
 
 	glPushMatrix();
 	glTranslatef(0, 0, 3.5);
@@ -227,8 +237,8 @@ void mytexture(int k) {
 		for (j = 0; j<checkImageWidth; j++) {
 			c = (((i & 0x8) == 0) ^ ((j & 0x8) == 0)) * 255;
 			checkImage[i][j][0] = (GLubyte)c;
-			checkImage[i][j][1] = (GLubyte)c;
-			checkImage[i][j][2] = (GLubyte)c;
+			checkImage[i][j][1] = (GLubyte)0;
+			checkImage[i][j][2] = (GLubyte)0;
 			checkImage[i][j][3] = (GLubyte)255;
 		}
 }
@@ -250,7 +260,7 @@ void init()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexImage2D(GL_TEXTURE, 0, GL_RGBA, checkImageWidth, checkImageHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, checkImage);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, checkImageWidth, checkImageHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, checkImage);
 }
 
 void updateView(int width, int height)
