@@ -20,7 +20,7 @@ int wWidth = 0;
 #define checkImageWidth 64
 #define checkImageHeight 64
 
-GLuint texture[3];
+GLuint texture[4];
 GLubyte checkImage[checkImageHeight][checkImageWidth][4];
 
 void DrawCube()
@@ -68,17 +68,6 @@ void DrawCube()
 
 void Draw_Leg();
 
-void single()
-{
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, texture[1]);
-}
-
-void multi()
-{
-	
-}
-
 void Draw_Triangle() // This function draws a triangle with RGB colors
 {
 	glEnable(GL_TEXTURE_2D);
@@ -90,7 +79,8 @@ void Draw_Triangle() // This function draws a triangle with RGB colors
 	glPopMatrix();
 	glDisable(GL_TEXTURE_2D);
 
-	single();
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture[1]);
 
 	glPushMatrix();
 	glTranslatef(0, 0, 3.5);
@@ -120,23 +110,6 @@ void Draw_Triangle() // This function draws a triangle with RGB colors
 	glPopMatrix();
 
 	glDisable(GL_TEXTURE_2D);
-/*
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, texture[2]);  //选择纹理texture[0]
-
-	glPushMatrix();
-	//。。。
-	//如果是某四边形，还必须设定纹理坐标，如下所示：茶壶不需要此步
-	glBegin(GL_QUADS);
-	glTexCoord2i(1, 1); glVertex3i(0.5, 0.5, 0);
-	glTexCoord2i(1, 0); glVertex3i(0.5, -0.5, 0);
-	glTexCoord2i(0, 0); glVertex3i(-0.5, -0.5, 0);
-	glTexCoord2i(0, 1); glVertex3i(-0.5, 0.5, 0);
-	glEnd();
-	glPopMatrix();
-
-	glDisable(GL_TEXTURE_2D);	//关闭纹理texture[0]
-*/
 }
 
 void Draw_Leg()
@@ -165,6 +138,14 @@ unsigned char *LoadBitmapFile(char *filename, BITMAPINFOHEADER *bitmapInfoHeader
 	if (filePtr == NULL) return NULL;
 	// 读入bitmap文件图
 	fread(&bitmapFileHeader, sizeof(BITMAPFILEHEADER), 1, filePtr);
+
+	fprintf(stderr, "file: %lu\n", sizeof(BITMAPFILEHEADER));
+	fprintf(stderr, "bfType: %d\n", bitmapFileHeader.bfType);
+	fprintf(stderr, "bfSize: %lu\n", bitmapFileHeader.bfSize);
+	fprintf(stderr, "bfReserved1: %d\n", bitmapFileHeader.bfReserved1);
+	fprintf(stderr, "bfReserved2: %d\n", bitmapFileHeader.bfReserved2);
+	fprintf(stderr, "bfOffBits: %lu\n", bitmapFileHeader.bfOffBits);
+
 	// 验证是否为bitmap文件
 	if (bitmapFileHeader.bfType != BITMAP_ID) {
 		fprintf(stderr, "Error in LoadBitmapFile: the file is not a bitmap file\n");
@@ -173,12 +154,24 @@ unsigned char *LoadBitmapFile(char *filename, BITMAPINFOHEADER *bitmapInfoHeader
 
 	// 读入bitmap信息头
 	fread(bitmapInfoHeader, sizeof(BITMAPINFOHEADER), 1, filePtr);
+
+	fprintf(stderr, "info: %lu\n", sizeof(BITMAPINFOHEADER));
+	fprintf(stderr, "biSize: %lu\n", bitmapInfoHeader->biSize);
+	fprintf(stderr, "biWidth: %lu\n", bitmapInfoHeader->biWidth);
+	fprintf(stderr, "biHeight: %lu\n", bitmapInfoHeader->biHeight);
+	fprintf(stderr, "biPlanes: %d\n", bitmapInfoHeader->biPlanes);
+	fprintf(stderr, "biBitCount: %d\n", bitmapInfoHeader->biBitCount);
+	fprintf(stderr, "biCompression: %lu\n", bitmapInfoHeader->biCompression);
+	fprintf(stderr, "biSizeImage: %lu\n", bitmapInfoHeader->biSizeImage);
+	fprintf(stderr, "biXPelsPerMeter: %lu\n", bitmapInfoHeader->biXPelsPerMeter);
+	fprintf(stderr, "biYPelsPerMeter: %lu\n", bitmapInfoHeader->biYPelsPerMeter);
+	fprintf(stderr, "biClrUsed: %lu\n", bitmapInfoHeader->biClrUsed);
+	fprintf(stderr, "biClrImportant: %lu\n", bitmapInfoHeader->biClrImportant);
+
 	// 将文件指针移至bitmap数据
 	fseek(filePtr, bitmapFileHeader.bfOffBits, SEEK_SET);
 	// 为装载图像数据创建足够的内存
-	fprintf(stderr, "size: %ld\n", bitmapInfoHeader->biSizeImage);
 	bitmapImage = new unsigned char[bitmapInfoHeader->biSizeImage];
-	fprintf(stderr, "count: %d\n", ++count);
 	// 验证内存是否创建成功
 	if (!bitmapImage) {
 		fprintf(stderr, "Error in LoadBitmapFile: memory error\n");
@@ -212,8 +205,8 @@ void texload(int i, char *filename)
 	unsigned char*   bitmapData;                                       // 纹理数据
 
 	bitmapData = LoadBitmapFile(filename, &bitmapInfoHeader);
-	//    if (bitmapData==NULL)
-	//        fprintf(stderr, "FILE NOT EXISTS\n");
+//    if (bitmapData==NULL)
+//        fprintf(stderr, "FILE NOT EXISTS\n");
 
 	glBindTexture(GL_TEXTURE_2D, texture[i]);
 	// 指定当前纹理的放大/缩小过滤方式
@@ -243,14 +236,12 @@ void mytexture(int k) {
 		}
 }
 
-int s = 0;
-
 void init()
 {
-	fprintf(stderr, "alloc: %d\n", ++s);
 	glGenTextures(3, texture);                                         // 第一参数是需要生成标示符的个数, 第二参数是返回标示符的数组
 	texload(0, "Monet.bmp");
 	texload(1, "Crack.bmp");
+	texload(3, "Spot.bmp");
 	//下面生成自定义纹理
 	mytexture(2); //参考opengl red book，理解后请解释函数的步骤。
 	glBindTexture(GL_TEXTURE_2D, texture[2]);

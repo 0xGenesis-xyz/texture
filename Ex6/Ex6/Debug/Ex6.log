@@ -1,11 +1,11 @@
-﻿Build started 2015/6/1 21:27:37.
+﻿Build started 2015/6/2 20:02:55.
      1>Project "E:\Sylvanus\studio\texture\Ex6\Ex6\Ex6.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IE:\Sylvanus\studio\texture\Ex6\Ex6\\glut /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
          main.cpp
-     1>e:\sylvanus\studio\texture\ex6\ex6\main.cpp(164): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>e:\sylvanus\studio\texture\ex6\ex6\main.cpp(137): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : see declaration of 'fopen'
-     1>e:\sylvanus\studio\texture\ex6\ex6\main.cpp(198): warning C4018: '<' : signed/unsigned mismatch
+     1>e:\sylvanus\studio\texture\ex6\ex6\main.cpp(191): warning C4018: '<' : signed/unsigned mismatch
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Sylvanus\studio\texture\Ex6\Debug\Ex6.exe" /INCREMENTAL /NOLOGO /LIBPATH:E:\Sylvanus\studio\texture\Ex6\Ex6\/glut glut32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\Sylvanus\studio\texture\Ex6\Debug\Ex6.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Sylvanus\studio\texture\Ex6\Debug\Ex6.lib" /MACHINE:X86 Debug\main.obj
          Ex6.vcxproj -> E:\Sylvanus\studio\texture\Ex6\Debug\Ex6.exe
@@ -13,4 +13,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.52
+Time Elapsed 00:00:01.21
